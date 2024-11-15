@@ -1,5 +1,18 @@
 {%if section.settings['show-announce'] %}
-   <section>announce bar</section>
+   <section>
+    <div class="announcement-bar">
+        <div class="left-section">
+             {% if section.settings.image != blank %}
+                   <img width="40" height="40" src="{{ section.settings.image | image_url }}" />
+              {% else %}
+                <img src="{{ 'icon.png' | asset_url}}" />
+               {% endif %}
+              </div>
+        <div class="right-section">
+             
+        </div>
+    </div>
+   </section>
 {% endif %}
 
 
@@ -12,6 +25,12 @@
       "id":"show-announce",
       "label":"Show announcement",
       "default":true
+    },
+    {
+      "type":"image_picker",
+      "id":"image",
+      "label":"pick image",
+      "info":"png wants"
     },
    ],
    "presets": []
