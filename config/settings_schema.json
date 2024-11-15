@@ -1,0 +1,30 @@
+[
+    {
+      "name": "Theme settings",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "welcome_message",
+          "label": "Welcome message",
+          "default": "Welcome to our store!"
+        }
+      ]
+    },
+    {
+      "name": "Footer",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_social_icons",
+          "label": "Show social media icons",
+          "default": true
+        }
+      ]
+    }
+  ]
