@@ -3,18 +3,17 @@
 {% schema %}
  {
    "name":"announcement bar",
-   "settings": [],
+   "settings": [
+    {
+      "type":"checkbox",
+      "id":"show-announce",
+      "label":"Show announcement",
+      "default":true
+    },
+   ],
    "presets": [
     {
       "name": "announcement bar",
-      "settings": [
-        {
-          "type":"checkbox",
-          "id":"show-announce",
-          "label":"Show announcement",
-          "default":true
-        },
-      ]
     }
    ]
 }
