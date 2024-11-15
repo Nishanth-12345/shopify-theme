@@ -1,4 +1,7 @@
-<section>announcement</section>
+{%if section.settings['show-announce'] %}
+   <section>announce bar</section>
+{% endif %}
+
 
 {% schema %}
  {
@@ -11,10 +14,6 @@
       "default":true
     },
    ],
-   "presets": [
-    {
-      "name": "announcement bar-1",
-    }
-   ]
+   "presets": []
 }
 {% endschema %}
