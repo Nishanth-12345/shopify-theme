@@ -1,38 +1,65 @@
-{%if section.settings['show-announce'] %}
-   <section>
+{% if section.settings['show-announce'] %}
+  <section>
     <div class="announcement-bar">
-        <div class="left-section">
-             {% if section.settings.image != blank %}
-                   <img width="40" height="40" src="{{ section.settings.image | image_url }}" />
-              {% else %}
-                <img src="{{ 'icon.png' | asset_url}}" />
-               {% endif %}
-              </div>
-        <div class="right-section">
-             
-        </div>
+      <div class="left-section">
+        {% if section.settings.image != blank %}
+          <img width="40" height="40" src="{{ section.settings.image | image_url }}">
+        {% else %}
+          <img width="20" height="20" src="{{ 'icon.png' | asset_url}}">
+        {% endif %}
+        {% if section.settings.image2 != blank %}
+          <img width="40" height="40" src="{{ section.settings.image2 | image_url }}">
+        {% else %}
+          <img width="20" height="20" src="{{ 'icon.png' | asset_url}}">
+        {% endif %}
+      </div>
+      <div class="right-section"></div>
     </div>
-   </section>
+  </section>
 {% endif %}
 
+<style>
+  .announcement-bar{
+     background: {{ section.settings.background }};
+     color:{{ section.settings.text-color }}
+  }
+</style>
 
 {% schema %}
- {
-   "name":"announcement bar",
-   "settings": [
+{
+  "name": "announcement bar",
+  "settings": [
     {
-      "type":"checkbox",
-      "id":"show-announce",
-      "label":"Show announcement",
-      "default":true
+      "type": "checkbox",
+      "id": "show-announce",
+      "label": "Show announcement",
+      "default": true
     },
     {
-      "type":"image_picker",
-      "id":"image",
-      "label":"pick image",
-      "info":"png wants"
+      "type": "image_picker",
+      "id": "image",
+      "label": "pick image",
+      "info": "png wants"
     },
-   ],
-   "presets": []
+    {
+      "type": "image_picker",
+      "id": "image-2",
+      "label": "pick image",
+      "info": "png wants"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text",
+      "default": "#000000"
+    },
+  ],
+  "presets": []
 }
 {% endschema %}
