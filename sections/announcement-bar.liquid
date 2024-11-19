@@ -15,7 +15,7 @@
       </div>
       <div class="right-section">
         <ul class="inner-list">
-          {% if section.block.size == 0 %}
+          {% if section.blocks.size == 0 %}
             <li>
               <a href="#">Help</a>
             </li>
@@ -33,7 +33,7 @@
             {% endif %}
 
           {% else %}
-            {% for block in section.block %}
+            {% for block in section.blocks %}
               <li>
                 <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
               </li>
