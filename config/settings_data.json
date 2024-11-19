@@ -1,0 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show-announce": true,
+          "image": "shopify://shop_images/woman-in-the-city_925x_2062d37b-e901-423e-9822-432d35960bec.jpg",
+          "image-2": "shopify://shop_images/smiling-woman-poses_925x_9ed2a015-4ebe-43a9-932c-3ff765b801e2.jpg",
+          "background": "#F4F4F4",
+          "text-color": "#000000"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
