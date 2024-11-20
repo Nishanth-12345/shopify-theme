@@ -11,29 +11,55 @@
       </div>
     {% endif %}
 
-    {% if section.settings.image-2 != blank %}
-        <div class="two-user">
-          <h1></h1>
-        </div>
-  
-      {% else %}
-        <div class="two">
-          <h1></h1>
-        </div>
-      {% endif %}
+    {% if section.settings['image-2'] != blank %}
+      <div class="two-user">
+        <h1></h1>
+      </div>
 
-      {% if section.settings.image-3 != blank %}
-        <div class="three-user">
-          <h1></h1>
-        </div>
-  
-      {% else %}
-        <div class="three">
-          <h1></h1>
-        </div>
-      {% endif %}
+    {% else %}
+      <div class="two">
+        <h1></h1>
+      </div>
+    {% endif %}
+
+    {% if section.settings['image-3'] != blank %}
+      <div class="three-user">
+        <h1></h1>
+      </div>
+
+    {% else %}
+      <div class="three">
+        <h1></h1>
+      </div>
+    {% endif %}
   </div>
 </section>
+
+<style>
+    .one-user{
+      background-image: url(" {{ section.settings.image | image_url}} ");
+      width: 33%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+  }
+
+  .two-user{
+    background-image: url(" {{ section.settings.image-2 | image_url}} ");
+    width: 33%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .three-user{
+    background-image: url(" {{ section.settings.image-3 | image_url}} ");
+    width: 33%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+</style>
 
 {% schema %}
 {
