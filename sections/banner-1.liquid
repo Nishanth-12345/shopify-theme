@@ -1,13 +1,80 @@
-<section>hello </section>
+<section>
+  <div class="banner-wrapper">
+    <div class="slide-text" id="text-1">shopping</div>
+    <div class="slide-text" id="text-2">shopping-1</div>
+    <div class="slide-text" id="text-3">shopping-2</div>
+  </div>
+</section>
+
+<style>
+  .banner-wrapper{
+     background: {{ section.settings.background }};
+     color:{{ section.settings.text-color }}
+  }
+
+  .slide-text{
+     position:absolute;
+     top:155px;
+     left:-150%;
+     transform: translate(0, -50%);
+     color: black;
+     padding: 20px;
+     font-size: 20px;
+     transition: left 0.5s ease-in-out;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const text1 = document.getElementById('text-1');
+    const text2 = document.getElementById('text-2');
+    const text3 = document.getElementById('text-3');
+
+    const texts = [text1, text2, text3];
+    let currentIndex = 0;
+
+    function slideToMiddle(ele) {
+      ele.style.left = '50%';
+    }
+
+    function resetPosition(ele) {
+      ele.style.left = '150%';
+    }
+
+    function slideText() {
+      resetPosition(text[currentIndex]);
+
+      currentIndex = (currentIndex + 1) % texts.length;
+
+      slideToMiddle(text[currentIndex]);
+    }
+    slideToMiddle(text[currentIndex]);
+
+    setInterval(slideText, 3000);
+  });
+</script>
 
 {% schema %}
- {
-   "name":"banner",
-   "settings": [],
-   "presets": [
+{
+  "name": "banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
     {
       "name": "banner"
     }
-   ]
+  ]
 }
 {% endschema %}
