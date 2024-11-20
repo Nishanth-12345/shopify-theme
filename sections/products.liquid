@@ -1,9 +1,46 @@
-<section>products</section>
+<section class="all-products">
+   <h1>{{ collection['frontpage'].title }}</h1>
+   <div class="product-container">
+     <div class="product-wrapper">
+        {% for product in collection['frontpage'].products %}
+            <h3>{{ product.title | link_to: product.url }}</h3>
+         {% endfor %}
+    </div>   
+   </div>
+</section>
 
+
+<style>
+   .products{
+      background: {{ section.settings.background }};
+      color:{{ section.settings.text-color }};
+      position: relative;
+      display: flex;
+   }
+</style>
 {% schema %}
 {
-   "name":"products",
-   "settings": [],
+   "name":"all-products",
+   "settings": [
+      {
+         "type": "color",
+         "id": "background",
+         "label": "Background",
+         "default": "#F4F4F4"
+       },
+       {
+         "type": "color",
+         "id": "text_color",
+         "label": "Text",
+         "default": "#000000"
+       },
+       {
+         "type": "text",
+         "id": "text",
+         "label": "Text",
+         "default": "default text"
+       },
+   ],
    "presets": []
 }
 {% endschema %}
