@@ -8,33 +8,40 @@
  * ------------------------------------------------------------
  */
 {
-  "sections":{
-      "banner":{
-         "type":"banner-1",
-         "settings":{}
-      },
-      "three-images":{
-         "type":"three-images",
-         "settings":{}
-      },
-      "more-info":{
-         "type":"more-info",
-         "settings":{}
-      },
-      "all-collections":{
-         "type":"all-collections",
-         "settings":{}
-      },
-      "products":{
-         "type":"products",
-         "settings":{}
-      },
+  "sections": {
+    "banner": {
+      "type": "banner-1",
+      "settings": {
+        "background": "#F4F4F4",
+        "text-color": "#000000"
+      }
+    },
+    "three-images": {
+      "type": "three-images",
+      "settings": {
+        "image": "shopify://shop_images/putting-on-your-shoes_925x_380187ca-5c39-47df-817b-9c223f4da6f9.jpg",
+        "image-2": "shopify://shop_images/womens-red-t-shirt_925x_5d6695a9-3df2-4b71-8909-7093b28b4c8f.jpg",
+        "image-3": "shopify://shop_images/smiling-woman-on-snowy-afternoon_925x_a06a06c8-b587-4008-93d0-6c43e7f07779.jpg"
+      }
+    },
+    "more-info": {
+      "type": "more-info",
+      "settings": {}
+    },
+    "all-collections": {
+      "type": "all-collections",
+      "settings": {}
+    },
+    "products": {
+      "type": "products",
+      "settings": {}
+    }
   },
-  "order":[
+  "order": [
     "banner",
     "three-images",
     "more-info",
     "all-collections",
     "products"
-   ] 
+  ]
 }
