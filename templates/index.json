@@ -13,8 +13,28 @@
          "type":"banner-1",
          "settings":{}
       },
+      "three-images":{
+         "type":"three-images",
+         "settings":{}
+      },
+      "more-info":{
+         "type":"more-info",
+         "settings":{}
+      },
+      "all-collections":{
+         "type":"all-collections",
+         "settings":{}
+      },
+      "products":{
+         "type":"products",
+         "settings":{}
+      },
   },
   "order":[
-    "banner"
+    "banner",
+    "three-images",
+    "more-info",
+    "all-collections",
+    "products"
    ] 
 }
