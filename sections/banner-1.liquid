@@ -1,8 +1,8 @@
 <section>
   <div class="banner-wrapper">
-    <div class="slide-text" id="text-1">shopping</div>
-    <div class="slide-text" id="text-2">shopping-1</div>
-    <div class="slide-text" id="text-3">shopping-2</div>
+    <div class="slide-text" id="text1"><p>Members: Free Shipping!</p></div>
+    <div class="slide-text" id="text2"><p>Save Up to 40%</p></div>
+    <div class="slide-text" id="text3"><p>shopping-2</p></div>
   </div>
 </section>
 
@@ -14,8 +14,8 @@
 
   .slide-text{
      position:absolute;
-     top:155px;
-     left:-150%;
+     top: 155px;
+     left: -150%;
      transform: translate(0, -50%);
      color: black;
      padding: 20px;
@@ -26,31 +26,38 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const text1 = document.getElementById('text-1');
-    const text2 = document.getElementById('text-2');
-    const text3 = document.getElementById('text-3');
+    console.log("yes");
+    const text1 = document.getElementById('text1');
+    const text2 = document.getElementById('text2');
+    const text3 = document.getElementById('text3');
 
     const texts = [text1, text2, text3];
+
+    console.log(texts);
     let currentIndex = 0;
 
-    function slideToMiddle(ele) {
-      ele.style.left = '50%';
+    function slideToMiddle(element) {
+      element.style.left = '40%';
+     
     }
 
-    function resetPosition(ele) {
-      ele.style.left = '150%';
+    function resetPosition(element) {
+      element.style.left = '-100%';
     }
 
     function slideText() {
-      resetPosition(text[currentIndex]);
+      resetPosition(texts[currentIndex]);
 
       currentIndex = (currentIndex + 1) % texts.length;
 
-      slideToMiddle(text[currentIndex]);
+      slideToMiddle(texts[currentIndex]);
     }
-    slideToMiddle(text[currentIndex]);
+    slideToMiddle(texts[currentIndex]);
 
-    setInterval(slideText, 3000);
+    setInterval(()=>{
+      slideText();
+      console.log('slide');
+    }, 1000);
   });
 </script>
 

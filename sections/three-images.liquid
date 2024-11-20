@@ -1,0 +1,62 @@
+<section>
+  <div class="three-images-wrapper">
+    {% if section.settings.image != blank %}
+      <div class="one-user">
+        <h1></h1>
+      </div>
+
+    {% else %}
+      <div class="one">
+        <h1></h1>
+      </div>
+    {% endif %}
+
+    {% if section.settings.image-2 != blank %}
+        <div class="two-user">
+          <h1></h1>
+        </div>
+  
+      {% else %}
+        <div class="two">
+          <h1></h1>
+        </div>
+      {% endif %}
+
+      {% if section.settings.image-3 != blank %}
+        <div class="three-user">
+          <h1></h1>
+        </div>
+  
+      {% else %}
+        <div class="three">
+          <h1></h1>
+        </div>
+      {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "product",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "pick image",
+      "info": "png wants"
+    },
+    {
+      "type": "image_picker",
+      "id": "image-2",
+      "label": "pick image",
+      "info": "png wants"
+    },
+    {
+      "type": "image_picker",
+      "id": "image-3",
+      "label": "pick image",
+      "info": "png wants"
+    }
+  ]
+}
+{% endschema %}
