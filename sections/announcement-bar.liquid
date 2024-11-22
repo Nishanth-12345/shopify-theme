@@ -2,10 +2,7 @@
 
 
 <section>
-  <div class="announcement-bar utility-bar__grid
-    {% if section.settings.show_social %}
-         utility-bar__grid--2-col
-    {% endif %}"
+  <div class="announcement-bar utility-bar__grid {% if section.settings.show_social %}utility-bar__grid--2-col{% endif %}"
     >
      {% if section.settings.show-social %}
       <div class="socio-media-icons">
