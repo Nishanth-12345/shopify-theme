@@ -1,46 +1,63 @@
 <section class="all-collections">
-   <h1>all-collections</h1>
-   <div class="collection-container">
-     <div class="collection-wrapper">
-        {% for collection in collections %}
-            <h3>{{ collection.title | link_to: collection.url }}</h3>
-         {% endfor %}
-    </div>   
-   </div>
+  <h1>all-collections</h1>
+  <div class="collection-container">
+    <div class="collection-wrapper">
+      {% for collection in collections %}
+        <div class="collection-card">
+          <img
+            width="300"
+            height="300"
+            loading="lazy"
+            src="{{ collection.featured_image | image_url }}"
+          >
+          <h3>collection - {{ collection.title | link_to: collection.url }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-
 <style>
-   .all-collections{
-      background: {{ section.settings.background }};
-      color:{{ section.settings.text-color }};
-      position: relative;
-      display: flex;
-   }
+     .all-collections{
+        background: {{ section.settings.background }};
+        color:{{ section.settings.text-color }};
+        padding: 10px;
+     }
+
+     .collection-collection{
+     position:relative;
+     display: flex;
+     flex-direction: row;
+    overflow:scroll;
+  }
+
+  .collection-wrapper{
+  display: flex;
+  }
 </style>
 {% schema %}
 {
-   "name":"all-collections",
-   "settings": [
-      {
-         "type": "color",
-         "id": "background",
-         "label": "Background",
-         "default": "#F4F4F4"
-       },
-       {
-         "type": "color",
-         "id": "text_color",
-         "label": "Text",
-         "default": "#000000"
-       },
-       {
-         "type": "text",
-         "id": "text",
-         "label": "Text",
-         "default": "default text"
-       },
-   ],
-   "presets": []
+  "name": "all-collections",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "default text"
+    }
+  ],
+  "presets": []
 }
 {% endschema %}
