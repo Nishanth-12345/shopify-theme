@@ -46,7 +46,7 @@
           {
            "type": "image_picker",
            "id":"logo",
-           "label": "select-label"
+           "label": "Logo"
           }
        ]
     }
