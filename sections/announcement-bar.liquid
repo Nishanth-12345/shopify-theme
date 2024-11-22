@@ -1,9 +1,40 @@
 {{ 'announcement.css' | asset_url | stylesheet_tag }}
 
+
 <section>
   <div class="announcement-bar">
-    <div></div>
-    <div>welcome to our store</div>
+    {% if section.settings.show-social %}
+      
+       <div class="socio-media-icons">
+       <ul class="socio-media">
+       
+          <li class="link">
+             <a href="{{ settings.facebook_link }}" class="link-item">
+                {{ 'icon-facebook.svg' | inline_asset_content }}  
+            </a>
+          </li>
+          
+          {% if settings.twitter_link !== blank %}
+            <li class="link">
+               <a href="{{ settings.twitter_link }}" class="link-item">
+                  {{ 'icon-twitter.svg' | inline_asset_content }}  
+              </a>
+            </li>
+            {% endif %}
+            {% if settings.youtube_link !== blank %}
+              <li class="link">
+                 <a href="{{ settings.youtube_link }}" class="link-item">
+                    {{ 'icon-youtube.svg' | inline_asset_content }}  
+                </a>
+              </li>
+            {% endif %}
+       </ul>
+       </div>
+     
+    {% endif %}
+    <div>
+      <p>welcome to our store</p>
+    </div>
     <div></div>
   </div>
 </section>
@@ -18,6 +49,13 @@
 {% schema %}
 {
   "name": "announcement bar",
-  "settings": [{}]
+  "settings": [
+    {
+       "type": "checkbox",
+       "id":"show-social",
+       "default": false,
+       "label": "social icons"
+    }
+  ]
 }
 {% endschema %}

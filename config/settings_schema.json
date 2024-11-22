@@ -16,15 +16,28 @@
         }
       ]
     },
+ 
     {
-      "name": "Footer",
+      "name":"socio-media",
       "settings": [
         {
-          "type": "checkbox",
-          "id": "show_social_icons",
-          "label": "Show social media icons",
-          "default": true
-        }
+          "type": "text",
+          "id":"facebook_link",
+          "label": "facebook",
+          "placeholder": "link"
+        },
+        {
+          "type": "text",
+          "id":"twitter_link",
+          "label": "twitter",
+          "placeholder": "link"
+        },
+        {
+          "type": "text",
+          "id":"youtube_link",
+          "label": "youtube",
+          "placeholder": "link"
+        },
       ]
     }
   ]

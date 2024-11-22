@@ -8,3 +8,33 @@
     height: 50px;
     background-color: black;
 }
+
+.announcement-bar p {
+    color: #fff;
+}
+
+
+.socio-media-icons{
+  position: relative;
+}
+
+.socio-media{
+   display: flex;
+   align-items: center;
+   gap: 15px;
+}
+
+.socio-media .link{
+    text-decoration: none;
+    list-style: none;
+}
+
+.socio-media .link .link-item{
+    text-decoration: none;
+    list-style: none;
+}
+
+.socio-media .link .link-item svg{
+    width: 24px;
+    height: 24px;
+}
