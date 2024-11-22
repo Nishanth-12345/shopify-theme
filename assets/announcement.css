@@ -12,7 +12,9 @@
     color: #fff;
 }
 
-
+.title{
+    text-align: center;
+}
 .socio-media-icons{
     display: flex;
         align-items: center;
