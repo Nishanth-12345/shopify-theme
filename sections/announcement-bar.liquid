@@ -31,10 +31,20 @@
        </ul>
        </div>
        {% endif %}
-  
+   
+       {% if section.blocks.size == 1 %}
     <div>
-      <p>welcome to our store</p>
+      {% if section.blocks.first.settings.text != blank %}
+        {% if section.blocks.first.settings.link != blank %}
+          <a  href="{{ section.blocks.first.settings.link }}">
+             {% endif %}
+             <p>{{ section.blocks.first.settings.text }}</p>  
+          </a>
+          {%- if section.blocks.first.settings.link != blank -%}
+          </a>
+        {%- endif -%}
     </div>
+    {% endif %}
     <div></div>
   </div>
 </section>
@@ -61,6 +71,25 @@
        "id":"show-social",
        "default":true,
        "label": "social icons"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"announcement",
+      "name":"create annoucnement",
+      "settings":[
+        {
+          "type":"text",
+          "id":"text",
+          "default":"text",
+          "label":"title"
+        },
+        {
+          "type":"url",
+          "id":"link",
+          "label":"link"
+        }
+      ]
     }
   ]
 }
