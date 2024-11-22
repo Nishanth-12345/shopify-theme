@@ -4,34 +4,34 @@
 <section>
   <div class="announcement-bar">
     {% if section.settings.show-social %}
-      
+
        <div class="socio-media-icons">
        <ul class="socio-media">
-       
+         {% if settings.facebook_link !== blank %}
           <li class="link">
              <a href="{{ settings.facebook_link }}" class="link-item">
                 {{ 'icon-facebook.svg' | inline_asset_content }}  
             </a>
           </li>
-          
-          {% if settings.twitter_link !== blank %}
+        {% endif %}
+        {% if settings.twitter_link !== blank %}
             <li class="link">
                <a href="{{ settings.twitter_link }}" class="link-item">
                   {{ 'icon-twitter.svg' | inline_asset_content }}  
               </a>
             </li>
-            {% endif %}
-            {% if settings.youtube_link !== blank %}
+        {% endif %}
+        {% if settings.youtube_link !== blank %}
               <li class="link">
                  <a href="{{ settings.youtube_link }}" class="link-item">
                     {{ 'icon-youtube.svg' | inline_asset_content }}  
                 </a>
               </li>
-            {% endif %}
+        {% endif %}
        </ul>
        </div>
-     
-    {% endif %}
+       {% endif %}
+  
     <div>
       <p>welcome to our store</p>
     </div>
@@ -51,9 +51,15 @@
   "name": "announcement bar",
   "settings": [
     {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "label",
+      "default": "scheme-4"
+    },
+    {
        "type": "checkbox",
        "id":"show-social",
-       "default": false,
+       "default":true,
        "label": "social icons"
     }
   ]

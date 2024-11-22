@@ -15,23 +15,35 @@
 
 
 .socio-media-icons{
-  position: relative;
-}
+    display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+    }
+
 
 .socio-media{
    display: flex;
    align-items: center;
-   gap: 15px;
+   gap: 15px;margin: 0;
+   padding: 0;
 }
 
 .socio-media .link{
     text-decoration: none;
     list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li::marker{
+    display: none;
+    margin: 0;
 }
 
 .socio-media .link .link-item{
     text-decoration: none;
     list-style: none;
+    margin: 0;
 }
 
 .socio-media .link .link-item svg{
