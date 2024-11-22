@@ -2,26 +2,29 @@
 
 
 <section>
-  <div class="announcement-bar">
-    {% if section.settings.show-social %}
-
-       <div class="socio-media-icons">
+  <div class="announcement-bar utility-bar__grid
+    {% if section.settings.show_social %}
+         utility-bar__grid--2-col
+    {% endif %}"
+    >
+     {% if section.settings.show-social %}
+      <div class="socio-media-icons">
        <ul class="socio-media">
-         {% if settings.facebook_link !== blank %}
+         {% if settings.facebook_link != blank %}
           <li class="link">
              <a href="{{ settings.facebook_link }}" class="link-item">
                 {{ 'icon-facebook.svg' | inline_asset_content }}  
             </a>
           </li>
         {% endif %}
-        {% if settings.twitter_link !== blank %}
+        {% if settings.twitter_link != blank %}
             <li class="link">
                <a href="{{ settings.twitter_link }}" class="link-item">
                   {{ 'icon-twitter.svg' | inline_asset_content }}  
               </a>
             </li>
         {% endif %}
-        {% if settings.youtube_link !== blank %}
+        {% if settings.youtube_link != blank %}
               <li class="link">
                  <a href="{{ settings.youtube_link }}" class="link-item">
                     {{ 'icon-youtube.svg' | inline_asset_content }}  
@@ -29,24 +32,23 @@
               </li>
         {% endif %}
        </ul>
+     
        </div>
-       {% endif %}
-   
-       {% if section.blocks.size == 1 %}
+
+     {% endif %}
+
+   {% if section.blocks.size == 1 %}
     <div>
       {% if section.blocks.first.settings.text != blank %}
-        {% if section.blocks.first.settings.link != blank %}
-          <a  href="{{ section.blocks.first.settings.link }}">
-             {% endif %}
-             <p>{{ section.blocks.first.settings.text }}</p>  
-          </a>
-          {%- if section.blocks.first.settings.link != blank -%}
-          </a>
-        {%- endif -%}
+     
+        <p>{{ section.blocks.first.settings.text }}</p>  
+      {% endif %}
+       
     </div>
     {% endif %}
     <div></div>
   </div>
+  
 </section>
 
 <style>
@@ -69,7 +71,7 @@
     {
        "type": "checkbox",
        "id":"show-social",
-       "default":true,
+       "default":false,
        "label": "social icons"
     }
   ],
@@ -88,6 +90,16 @@
           "type":"url",
           "id":"link",
           "label":"link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "announement",
+      "blocks": [
+        {
+          "type": "announcement"
         }
       ]
     }
