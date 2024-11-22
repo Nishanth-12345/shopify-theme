@@ -1,20 +1,23 @@
 {
-    "name":"header-groups",
-    "type":"header",
-    "sections":{
-        "announcement-bar":{
-            "type":"announcement-bar",
-            "blocks":{
-                "type":"announcement",
-                "settings":{
-                    "text":"welcome to store shop",
-                    "link":""
-                }
-            }
-        },
-        
+  "name": "header-groups",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "welcome to store shop",
+            "link": ""
+          }
+        }
+      }
     },
-    "order":[
-        "announcement-bar"
-    ]
+    "block_order": ["announcement-bar-0"],
+    "header": {
+        "type":"header",
+    }
+  },
+  "order": ["announcement-bar","header"]
 }

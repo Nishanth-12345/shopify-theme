@@ -1,11 +1,40 @@
-<nav>
-    {% render 'header' %}
-</nav>
+
+<section>
+    <div class="header-container">
+        <h1>
+          <a href="/">
+            <div class="title">Dev Store</div>
+            {% comment %} <div class="logo"></div> {% endcomment %}
+        </a>
+        </h1>
+    
+        <nav class="menu-links">
+            <ul>
+              {% for link in section.settings.menu.links %}
+                 <li>
+                    {% if link.links !== blank %}
+                        <span>{{ link.title }}</span>
+                    {% endif %}
+                 </li>
+              {% endfor %}
+            </ul>
+        </nav>
+        <div class="right-content"></div>
+    </div>
+</section>
 
 {% schema %}
 {
-   "name":"Navbar",
-   "settings": [],
+   "name":"header",
+   "settings": [
+   
+    {
+      "type":"link_list",
+      "id":"menu",
+      "default":"main-menu",
+      "label":"main menu"
+    }
+   ],
    "presets": []
 }
 {% endschema %}

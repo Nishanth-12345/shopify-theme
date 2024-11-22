@@ -39,5 +39,15 @@
           "placeholder": "link"
         },
       ]
+    },
+    {
+       "name":"logo",
+       "settings": [
+          {
+           "type": "image_picker",
+           "id":"logo",
+           "label": "select-label"
+          }
+       ]
     }
   ]
