@@ -1,4 +1,4 @@
- {% comment %} <img  src="{{ 'black-friday-spl-min.jpg' | asset_url }}"  />
+ <img  src="{{ 'black-friday-spl-min.jpg' | asset_url }}"  />
 
 {% for product in 
     collections['frontpage'].products %}
@@ -10,4 +10,4 @@
     </a>
    </div>
     {{- product.title | link_to: product.url }}
-  {% endfor %}  {% endcomment %}
+  {% endfor %} 
