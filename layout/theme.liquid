@@ -5,8 +5,8 @@
   </head>
   <body>
      {% section 'announcement-bar' %}
+     
     {{ content_for_layout }}
-    {{ product.category }}
-    {{ 'scripts.js' | asset_url | script_tag}}
+    {% section 'footer' %}
   </body>
 </html>
