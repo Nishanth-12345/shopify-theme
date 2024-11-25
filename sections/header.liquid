@@ -1,10 +1,13 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
 <section>
-  <header class="header-container">
+  <header class="header-container
+    header--{{ section.settings.logo_position }}
+    ">
+
+    {% if section.settings.logo_position != 'middle-center' %}
     <h1>
       <a href="/">
-
 
         {% if settings.logo != blank %}
           <div class="logo">
@@ -21,6 +24,8 @@
       </a>
     </h1>
 
+    {% endif %}
+
     <nav class="menu-links">
       <ul>
         {% for link in section.settings.menu.links %}
@@ -32,6 +37,29 @@
         {% endfor %}
       </ul>
     </nav>
+
+    {% if section.settings.logo_position == 'middle-center' %}
+      <h1>
+        <a href="/">
+  
+  
+          {% if settings.logo != blank %}
+            <div class="logo">
+              {%- assign logo_height = 50 | divided_by: 1 -%}
+              {{
+                settings.logo
+                | image_url: width: 600
+                | image_tag: class: 'header-logo', width: 50, height: logo_height
+              }}
+            </div>
+            {% else %}
+              <div class="title">Dev Store</div>
+          {% endif %}
+        </a>
+      </h1>
+  
+      {% endif %}
+
     <div class="right-content">
       <span class="svg">{{ 'icon-search.svg' | inline_asset_content }}</span>
       {% if shop.customer_accounts_enabled %}
@@ -72,11 +100,37 @@
   "name": "header",
   "settings": [
     {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "top left"
+        },
+        {
+          "value": "top-center",
+          "label": "top center"
+        },
+        {
+          "value": "middle-left",
+          "label": "middle left"
+        },
+        {
+          "value": "middle-center",
+          "label": "middle center"
+        }
+      ],
+      "default": "middle-left",
+      "label": "changeLogoPos",
+      "info": "content"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "default": "main-menu",
       "label": "main menu"
-    }
+    },
+  
   ],
   "presets": []
 }

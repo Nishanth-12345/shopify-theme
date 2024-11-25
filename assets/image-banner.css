@@ -1,0 +1,17 @@
+.banner{
+    display: flex;
+    position: relative;
+    z-index: auto;
+    min-height: 380px;
+}
+
+.banner:after, .banner__media:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    background: #000;
+    opacity: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}

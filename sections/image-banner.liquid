@@ -1,0 +1,181 @@
+{{ 'image-banner.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #banner--{{ section.id }}::after{
+    opacity: {{ section.settings.overlay | divided_by: 100 }}
+  }
+{% endstyle %}
+
+{% liquid
+  assign fullwidth = '100vw'
+  if section.settings['image-behaviour'] == 'ambient'
+    assign halfwidth = '60vw'
+    assign fullwidth = '120vw'
+
+  elsif section.settings['image-behaviour'] == 'fixed' or section.settings['image-behaviour'] == 'zoom'
+    assign halfwidth = '100vw'
+    assign fullwidth = '100vw'
+
+  else
+    assign halfwidth = '50vw'
+  endif
+%}
+
+<section>
+  <div
+    id="banner-{{ section.id }}"
+    class="banner banner-align-{{ section.settings }}"
+  >
+    {% if section.settings.image1 != blank %}
+      <div
+        class="
+          banner-image media
+           {% if section.settings.image1 == blank and section.settings.image2 == blank %}
+            'placeholder'
+          {% endif %}
+          {% if section.settings.image2 != blank %}
+             image-half
+          {% endif %}
+           {% if section.settings.image-behaviour != 'none' %}
+            animate--{{ section.settings.image-behaviour }}
+           {% endif %}
+        "
+      >
+        {% liquid
+          assign image_height = section.settings.image1.width | divided_by: section.settings.image1.aspect_ratio
+          if section.settings.image2 != blank
+            assign image_class = 'image_half'
+          endif
+          if section.settings.image2 != blank
+            assign sizes = halfwidth
+          else
+            assign sizes = fullwidth
+          endif
+        %}
+        {{
+          section.settings.image1
+          | image_url: width: 3840
+          | image_tag: width: section.settings.image1.width, height: image_height, class: image_class, sizes: sizes
+        }}
+      </div>
+    {% elsif section.settings.image2 == blank %}
+      <div
+        class="
+          banner-image media
+          {% if section.settings.image2 != blank %}
+            image-half
+          {% endif %}
+          {% if section.settings.image-behavior != 'none' %}
+           animate--{{ section.settings.image-behavior }}
+          {% endif %}
+        "
+      >
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image1",
+      "label": "select image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "select image 2"
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "select overlay",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "content-position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "middle",
+      "label": "content position"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "image-behaviour",
+      "options": [
+        {
+          "value": "ambient",
+          "label": "ambient"
+        },
+        {
+          "value": "fixed",
+          "label": "fixed"
+        }
+      ],
+      "default": "none",
+      "label": "select image behavior"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "banner full",
+          "label": "heading"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "banner title",
+          "label": "title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "image-banner",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
