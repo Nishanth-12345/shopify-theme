@@ -1,40 +1,83 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
 
 <section>
-    <div class="header-container">
-        <h1>
-          <a href="/">
+  <header class="header-container">
+    <h1>
+      <a href="/">
+
+
+        {% if settings.logo != blank %}
+          <div class="logo">
+            {%- assign logo_height = 50 | divided_by: 1 -%}
+            {{
+              settings.logo
+              | image_url: width: 600
+              | image_tag: class: 'header-logo', width: 50, height: logo_height
+            }}
+          </div>
+          {% else %}
             <div class="title">Dev Store</div>
-            {% comment %} <div class="logo"></div> {% endcomment %}
+        {% endif %}
+      </a>
+    </h1>
+
+    <nav class="menu-links">
+      <ul>
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.title }}">
+            <li>
+              <span>{{ link.title }}</span>
+            </li>
+          </a>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="right-content">
+      <span class="svg">{{ 'icon-search.svg' | inline_asset_content }}</span>
+      {% if shop.customer_accounts_enabled %}
+        <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+          <account-icon>
+            {% if customer and customer.has_avatar? %}
+              {{ customer | avatar }}
+            {% else %}
+              <span class="svg">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            {% endif %}
+          </account-icon>
         </a>
-        </h1>
-    
-        <nav class="menu-links">
-            <ul>
-              {% for link in section.settings.menu.links %}
-                 <li>
-                    {% if link.links !== blank %}
-                        <span>{{ link.title }}</span>
-                    {% endif %}
-                 </li>
-              {% endfor %}
-            </ul>
-        </nav>
-        <div class="right-content"></div>
+      {% endif %}
+
+      <a
+        href="{{ routes.cart_url }}"
+        class="header-icon--cart"
+      >
+        {% if cart == empty %}
+          <span class="svg">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+        {% else %}
+          <span class="svg">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+        {% endif %}
+        {% if cart != empty %}
+          <div class="cart-item-count">
+            {%- if cart.item_count < 100 -%}
+              <span>{{ cart.item_count }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      </a>
     </div>
+  </header>
 </section>
 
 {% schema %}
 {
-   "name":"header",
-   "settings": [
-   
+  "name": "header",
+  "settings": [
     {
-      "type":"link_list",
-      "id":"menu",
-      "default":"main-menu",
-      "label":"main menu"
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "main menu"
     }
-   ],
-   "presets": []
+  ],
+  "presets": []
 }
 {% endschema %}

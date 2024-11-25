@@ -1,0 +1,93 @@
+svg{
+    width: 24px;
+    height: 24px;
+}
+
+.header-container{
+   display: grid;
+   grid-template-areas: 'left-icons heading icons';
+   grid-template-columns: 1fr 2fr 1fr;
+   align-items: center;
+   padding: 8px 50px;
+   border-bottom: 1px solid #989898;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1 .title{
+    color: #000;
+}
+
+h2 .logo{
+    display: block;
+    width: 50px;
+    height: 76px;
+}
+
+h2 .logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.menu-links{
+    position: relative;
+    display: block;
+}
+
+.menu-links ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-links ul li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #333;
+}
+
+.right-content{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+
+.right-content span svg{
+    stroke: #000;
+    stroke-width: 0.5;
+}
+
+.right-content a:last-child svg{
+    width: 40px;
+    height: 40px;
+}
+
+.right-content a:last-child{
+    position: relative;
+}
+
+.cart-item-count{
+   position: absolute;
+   right: 0;
+   bottom: 2px;
+   display: flex;
+   align-items: center;
+   width: 14px;
+   height: 14px;
+   justify-content: center;
+   border-radius: 50%;
+   background-color: #fff;
+   border: 1px solid #333;
+}
+
+.cart-item-count span{
+    color: #333;
+    font-size: 12px;
+}
