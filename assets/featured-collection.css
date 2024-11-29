@@ -1,0 +1,58 @@
+.heading{
+    margin-bottom: 12px;
+}
+
+.collection-wrapper{
+    display: block;
+    position: relative;
+    margin:0 20px;
+}
+
+.title-container{
+    margin-bottom: 12px;
+}
+
+.title-container h2{
+    font-size: 24px;
+}
+
+.featured-products-container{
+    position: relative;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 14px;
+    row-gap: 14px;
+}
+.grid-item{
+   grid-column: span 4;
+}
+@media (min-width: 1024) {
+    .product-grid.grid-2-col .grid-item{
+        grid-column: span 2;
+    }
+    
+    .product-grid.grid-4-col .grid-item{
+        grid-column: span 4;
+    }
+    
+}
+
+.product-grid.grid-6-col .grid-item{
+    grid-column: span 6;
+}
+
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

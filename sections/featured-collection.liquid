@@ -1,0 +1,143 @@
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="collection-wrapper"
+  id="collection-{{ section.id }}"
+  data-id="{{ section.id }}"
+>
+  <div class="title-container">
+    <h2 class="{{ section.settings.font-size }}">{{ section.settings.title }}</h2>
+  </div>
+  <div class="featured-products-container">
+    <ul
+      class="
+        slider grid product-grid
+        grid-{{ section.settings.columns }}-col
+      "
+    >
+      {% for product in section.settings.collection.products
+       limit: section.settings.no_of_products
+      %}
+        <li class="grid-item">
+          {% render 'card-product' ,
+            products: product,
+            aspect-ratio: section.settings.card-img-ratio,
+            quick-add: section.settings.quick-add
+          %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "featured-products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "featured products",
+      "label": "heading"
+    },
+    {
+      "type": "select",
+      "id": "font-size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "h2"
+        },
+        {
+          "value": "h0",
+          "label": "h0"
+        }
+      ],
+      "label": "select font size"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "collection"
+    },
+    {
+      "type": "range",
+      "id": "no_of_products",
+      "min": 2,
+      "max": 25,
+      "step": 1,
+      "default": 4,
+      "label": "no of products"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "no of columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-slider",
+      "label": "slider",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "card-img-ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "adapt"
+        },
+        {
+          "value": "potrait",
+          "label": "potrait"
+        }
+      ],
+      "default": "adapt",
+      "label": "card image ratio"
+    },
+    {
+      "type": "select",
+      "id": "quick-add",
+      "options": [
+        {
+          "value": "none",
+          "label": "none"
+        },
+        {
+          "value": "standard",
+          "label": "standard"
+        },
+        {
+          "value": "bulk",
+          "label": "bulk"
+        }
+      ],
+      "default": "none",
+      "label": "quick add products"
+    },
+    {
+      "type": "range",
+      "id": "padding-y",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding-bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "collection"
+    }
+  ]
+}
+{% endschema %}

@@ -2,11 +2,13 @@
   <head>
     {{ content_for_header }}
     {{ 'style.css' | asset_url | stylesheet_tag}}
+    {{ 'base.css' | asset_url | stylesheet_tag}}
   </head>
   <body>
      {% sections 'header-group' %}
      
     {{ content_for_layout }}
     {% section 'footer' %}
+    <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

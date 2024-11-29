@@ -1,0 +1,26 @@
+.rich-text-container{
+    padding: 20px;
+}
+
+.rich-text-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rich-text-wrapper.align-left{
+   justify-content: flex-start;
+}
+
+.rich-text-wrapper.align-center{
+    justify-content: center;
+}
+
+.rich-text-wrapper.align-right{
+    justify-content: flex-end;
+}
+
+.rich-text-wrapper > *{
+    margin-top: 10px;
+}

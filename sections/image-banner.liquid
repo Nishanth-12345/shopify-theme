@@ -1,18 +1,18 @@
 {{ 'image-banner.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-  #banner--{{ section.id }}::after{
-    opacity: {{ section.settings.overlay | divided_by: 100 }}
+  .banner::after{
+    opacity: {{ section.settings.overlay | divided_by: 100.0 }}
   }
 {% endstyle %}
 
 {% liquid
   assign fullwidth = '100vw'
-  if section.settings['image-behaviour'] == 'ambient'
+  if section.settings.img_behaviour == 'ambient'
     assign halfwidth = '60vw'
     assign fullwidth = '120vw'
 
-  elsif section.settings['image-behaviour'] == 'fixed' or section.settings['image-behaviour'] == 'zoom'
+  elsif section.settings.img_behaviour == 'fixed' or section.settings.img_behaviour == 'zoom'
     assign halfwidth = '100vw'
     assign fullwidth = '100vw'
 
@@ -23,8 +23,8 @@
 
 <section>
   <div
-    id="banner-{{ section.id }}"
-    class="banner banner-align-{{ section.settings }}"
+    id="Banner-{{ section.id }}"
+    class="banner banner-align-{{ section.settings.content-position }}"
   >
     {% if section.settings.image1 != blank %}
       <div
@@ -36,15 +36,15 @@
           {% if section.settings.image2 != blank %}
              image-half
           {% endif %}
-           {% if section.settings.image-behaviour != 'none' %}
-            animate--{{ section.settings.image-behaviour }}
+           {% if section.settings.img_behaviour != 'none' %}
+            animate-{{ section.settings.img_behaviour }}
            {% endif %}
         "
       >
         {% liquid
           assign image_height = section.settings.image1.width | divided_by: section.settings.image1.aspect_ratio
           if section.settings.image2 != blank
-            assign image_class = 'image_half'
+            assign image_class = 'image-half'
           endif
           if section.settings.image2 != blank
             assign sizes = halfwidth
@@ -65,14 +65,64 @@
           {% if section.settings.image2 != blank %}
             image-half
           {% endif %}
-          {% if section.settings.image-behavior != 'none' %}
-           animate--{{ section.settings.image-behavior }}
+          {% if section.settings.img_behaviour != 'none' %}
+           animate-{{ section.settings.img_behaviour }}
           {% endif %}
         "
       >
-        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        <img src="{{ 'Armchair.jpg' | asset_url }}" width="300" height="300">
+        
       </div>
     {% endif %}
+
+    {% if section.settings.image2 != blank %}
+      <div
+        class="banner-image
+          {% if section.settings.image1!= blank %}
+            image-half
+          {% endif %}
+          {% if section.settings.img_behavior != 'none' %}
+           animate-{{ section.settings.img_behaviour }}
+          {% endif %}
+        "
+      >
+        {% liquid
+          assign image_height_2 = section.settings.image2.width | divided_by: section.settings.image2.aspect_ratio
+          if section.settings.image1 != blank
+            assign image_class = 'image-half'
+          endif
+          if section.settings.image1 != blank
+            assign sizes = halfwidth
+          else
+            assign sizes = fullwidth
+          endif
+        %}
+        {{
+          'Armchair.jpg'| asset_url
+          | image_url: width: 3840
+          | image_tag: width: section.settings.image2.width, height: image_height_2, class: image_class, sizes: sizes
+        }}
+      </div>
+    {% endif %}
+    <div class="banner-content">
+      <div class="banner-box">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'heading' %}
+              <h2 class="heading inline-richtext">
+                {{ block.settings.heading }}
+              </h2>
+            {% when 'text' %}
+              <p class="text">
+                {{ block.settings.text }}
+              </p>
+          {% endcase %}
+        {% endfor %}
+        <div class="button">
+          <a class="button-link">button</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -128,8 +178,12 @@
     },
     {
       "type": "select",
-      "id": "image-behaviour",
+      "id": "img_behaviour",
       "options": [
+        {
+          "value": "none",
+          "label": "none"
+        },
         {
           "value": "ambient",
           "label": "ambient"
@@ -137,7 +191,11 @@
         {
           "value": "fixed",
           "label": "fixed"
-        }
+        },
+        {
+          "value": "zoom-in",
+          "label": "zoom-in"
+        },
       ],
       "default": "none",
       "label": "select image behavior"
@@ -154,12 +212,18 @@
           "id": "heading",
           "default": "banner full",
           "label": "heading"
-        },
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "title",
+      "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "default": "banner title",
-          "label": "title"
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "banner",
+          "label": "text"
         }
       ]
     }

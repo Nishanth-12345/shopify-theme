@@ -1,0 +1,37 @@
+{% liquid
+  assign ratio = 1
+  if products.featured_media and aspect-ratio == 'portrait'
+    assign ratio = 0.8
+  endif
+%}
+
+<div class="card-wrapper">
+  <div
+    class="{% if products.featured_media %} card-image {% endif %}"
+    style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%"
+  >
+    {% if products.featured_media %}
+      <div class="card-image">
+        <img
+          src="{{ products.featured_media | image_url:width: 500 }}"
+          width="{{ products.featured_media.width }}"
+          height="{{ products.featured_media.height }}"
+        >
+      </div>
+    {% endif %}
+    
+  </div>
+  <div class="card-content" id="title-{{ products.id }}">
+    <a
+      href="{{ products.url }}"
+    >
+      <h3 class="heading">
+        {{ products.title }}
+      </h3>
+    </a>
+    <div class="info">
+       <p>{{ products.vendor }}</p>
+       <p>{{ products.price }}</p>
+    </div>
+  </div>
+</div>

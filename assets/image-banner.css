@@ -1,11 +1,15 @@
 .banner{
     display: flex;
     position: relative;
+    flex-direction: column;
     z-index: auto;
-    min-height: 380px;
+    height: 100%;
+    max-height: 340px;
 }
 
-.banner:after, .banner__media:after {
+
+
+.banner::after {
     content: "";
     position: absolute;
     top: 0;
@@ -14,4 +18,135 @@
     z-index: 1;
     width: 100%;
     height: 100%;
+}
+.banner-image svg{
+   height: 100%;
+   width: 100%;
+}
+
+.banner-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: opacity .4s cubic-bezier(.25,.46,.45,.94);
+}
+
+.banner-box{
+    text-align: center;
+}
+
+.banner-align-top .banner-content{
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.banner-align-middle .banner-content{
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-align-bottom .banner-content{
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.banner-image{
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.image-half{
+    width: 50%;
+}
+
+.image-half + .image-half{
+    right: 0;
+    left: auto;
+}
+
+.banner-content{
+    padding: 0;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.banner-box{
+    padding: 20px;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    word-wrap: break-word;
+    z-index: 1;
+}
+
+.banner-content .heading{
+     font-weight: 500;
+}
+
+.banner-content .text{
+    font-size: 16px;
+}
+
+.banner-content .button{
+     display: flex;
+     align-items: center;
+     border: 1px solid #ccc;
+
+     justify-content: center;
+     border-radius: 4px;
+     padding: 8px 12px;
+}
+
+.banner-content .button-link{
+    text-decoration: none;
+    color: #000;
+}
+
+
+.banner-image.animate-zoom-in{
+    clip-path: inset(0px);
+}
+
+.banner-image.fixed{
+    clip-path: inset(0px);
+}
+
+.banner-image.animate-fixed > img,
+.banner-image.animate-zoom-in > img{
+  position: fixed;
+  height: 100vh;
+}
+
+.image-half.animate-fixed:first-child > img,
+.image-half.animate-zoom-in:first-child > img{
+    width: 50%;
+}
+
+.image-half.animate-fixed:nth-child(2) > img,
+.image-half.animate-zoom-in:nth-child(2)> img{
+    left: 50%;
+    width: 50%;
+}
+
+.animate-zoom-in {
+    --zoom-in-ratio: 1;
+}
+
+.animate-zoom-in > img{
+    scale: var(--zoom-in-ratio);
+    transition:  scale 100ms linear;
 }
