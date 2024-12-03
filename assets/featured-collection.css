@@ -18,15 +18,38 @@
 
 slider-component {
     display: flex;
+    flex-direction: column;
     align-items: center;
     position: relative;
     overflow: hidden;
     width: 100%;
 }
+
 .nav-buttons{
     position: absolute;
     top: 0;
     right: 0;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+}
+
+.slider + .nav-buttons{
+    opacity: 1;
+}
+
+.nav-buttons .next-button,
+.nav-buttons .prev-button{
+   background-color: #ffffff;
+   border: 1px solid slategray;
+   width: 34px;
+   height: 34px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .grid {
@@ -37,6 +60,10 @@ slider-component {
 }
 .grid-item{
    grid-column: span 4;
+}
+
+.product-grid{
+    padding: 20px 0;
 }
 
 
@@ -85,9 +112,8 @@ li{
     padding: 8px 12px;
     width: 100%;
     outline: none;
-    border: 1px solid #e9f1cb;
-    background-color: #dbded0;
-    color: #000;
+    border: 1px solid #070707;
+    color: #545353;
 }
 
 

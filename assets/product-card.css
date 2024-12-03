@@ -1,7 +1,9 @@
 .card-wrapper{
     height: 100%;
     width: 100%;
+    border-radius: 4px;
     position: relative;
+    background-color: #f5f5f5;
 }
 
 .card-image{
@@ -15,7 +17,7 @@ a{
 }
 
 h3{
-    color: #c8c8c8;
+    color: #828181;
 }
 
 .card-image{

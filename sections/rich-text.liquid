@@ -1,5 +1,10 @@
 {{ 'rich-text.css' | asset_url | stylesheet_tag }}
-
+<style>
+  .rich-text-container{
+    background: url('{{ "chair-banner.jpeg" | asset_url }}') no-repeat center center;
+    background-size: cover;
+  }
+</style>
 <section>
   <div class="rich-text-container">
       <div class="rich-text-wrapper 
