@@ -36,11 +36,16 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {}
+    },
+    "counter": {
+      "type": "counter",
+      "settings": {}
     }
   },
   "order": [
     "image_banner",
+    "featured_collection",
     "rich-text",
-    "featured_collection"
+    "counter"
   ]
 }

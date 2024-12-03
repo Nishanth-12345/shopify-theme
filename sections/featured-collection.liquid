@@ -9,33 +9,78 @@
   <div class="title-container">
     <h2 class="{{ section.settings.font-size }}">{{ section.settings.title }}</h2>
   </div>
+  <div class="categories">
+    {% for block in section.blocks %}
+      {% if block.type == 'collection' %}
+        <span data-collection-title="{{ block.settings.collection.handle }}">{{ block.settings.collection.title }}</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+
   <slider-component class="featured-products-container">
-    
     <ul
       class="
-    {%if section.settings.enable-slider %} slider {% else %} grid product-grid {% endif %}
-         grid-{{ section.settings.columns }}-col
+            {%if section.settings.enable-slider %} slider {% else %} grid product-grid {% endif %}
+        grid-{{ section.settings.columns }}-col
       "
     >
-      {% for product in section.settings.collection.products
-       limit: section.settings.no_of_products
-      %}
-        <li class="grid-item">
-          {% render 'card-product' ,
-            products: product,
-            aspect-ratio: section.settings.card-img-ratio,
-            quick-add: section.settings.quick-add
-          %}
-        </li>
+      {% for block in section.blocks %}
+         {% if block.type == 'collection' %}
+            {% assign collection = block.settings.collection %} 
+            {% for product in collection.products %}
+              <li class="grid-item" data-category="{{ collection.handle }}">
+                {% render 'card-product',
+                  products: product,
+                  aspect-ratio: section.settings['card-img-ratio'],
+                  quick-add: section.settings['quick-add']
+                %}
+              </li>
+              {% endfor %}
+          {% endif %}
       {% endfor %}
+ 
     </ul>
     <div class="nav-buttons">
-        <button class="next-button">Next</button>
-        <button class="prev-button">Prev</button>
+      <button class="next-button">Next</button>
+      <button class="prev-button">Prev</button>
     </div>
   </slider-component>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const categories = document.querySelectorAll('.categories span');
+    console.log(categories);
+    const products = document.querySelectorAll('.grid-item');
+    console.log(products);
+   
+
+    products.forEach(product => {
+        product.style.display = 'block';
+    });
+
+    categories.forEach(category => {
+      category.addEventListener('click', (e) => {
+        const slider = document.querySelector('.featured-products-container ul').style.transform = `translateX(0px)`;
+          
+          const selectedCategory = e.target.dataset.collectionTitle;
+         
+          categories.forEach(cat => cat.classList.remove('active'));
+          console.log( e.target.dataset.collectionTitle,'cat');
+          e.target.classList.add('active');
+          // Show/hide products based on the selected category
+          products.forEach(product => {
+              if (product.dataset.category === selectedCategory) {
+                  product.style.display = 'block';
+              } else {
+                  product.style.display = 'none';
+              }
+          });
+      });
+  })
+  });
+</script>
 {% schema %}
 {
   "name": "featured-products",
@@ -63,11 +108,7 @@
       ],
       "label": "select font size"
     },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "collection"
-    },
+
     {
       "type": "range",
       "id": "no_of_products",
@@ -83,7 +124,7 @@
       "min": 1,
       "max": 6,
       "step": 1,
-      "default": 4,
+      "default": 3,
       "label": "no of columns"
     },
     {
@@ -139,9 +180,17 @@
       "default": 36
     }
   ],
-  "presets": [
+  "blocks": [
     {
-      "name": "collection"
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        }
+      ]
     }
   ]
 }

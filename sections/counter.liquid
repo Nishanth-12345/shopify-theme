@@ -1,0 +1,38 @@
+{{ 'counter.css' | asset_url | stylesheet_tag }}
+
+<section>
+  <div class="counter-container">
+    <div class="overlay">
+        <img src="{{ 'chair-banner-2.jpeg' | asset_url }}" width="1000" height="300"/>
+        <div class="opacity"></div>
+    </div>
+    <div class="promotion">
+        <h2>Black Friday Sale</h2>
+        <p>Offer Ends Soon</p>
+    </div>
+    <div class="counter">
+      <div class="hh-mm">
+        <span>15</span>
+        <span>Days</span>
+      </div>
+      <div class="hh-mm">
+        <span>12</span>
+        <span>Hr</span>
+      </div>
+      <div class="hh-mm">
+        <span>10</span>
+        <span>Min</span>
+      </div>
+      <div class="hh-mm">
+        <span>8</span>
+        <span>Sec</span>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "counter",
+  "settings": []
+}
+{% endschema %}

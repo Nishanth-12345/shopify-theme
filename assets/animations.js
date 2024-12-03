@@ -62,14 +62,17 @@ class SliderComponent extends HTMLElement {
     constructor() {
         super();
         this.slider = this.querySelector('ul');
+        this.componentWidth = this.slider.querySelector('li.grid-item').clientWidth;
+        this.total = this.slider.clientWidth;
         if (!this.slider) return;
-
+        this.index = 0;
         this.initWidth();
-
+        this.slider.style.width = `${this.total}px`
         const nextButton = this.querySelector('.next-button');
         const prevButton = this.querySelector('.prev-button');
         if (nextButton) nextButton.addEventListener('click', () => this.nextSlide());
         if (prevButton) prevButton.addEventListener('click', () => this.prevSlide());
+        console.log(this.slider.clientWidth,'total')
     }
 
     initWidth() {
@@ -82,6 +85,10 @@ class SliderComponent extends HTMLElement {
     }
 
     nextSlide() {
+        if(this.index === this.sliderItems.length - 1){
+            this.index = 0;
+            this.updateSliderPosition();
+        }
         console.log("index",this.index)
         this.index = (this.index + 1) % this.sliderItems.length;
         this.updateSliderPosition();
@@ -89,12 +96,18 @@ class SliderComponent extends HTMLElement {
 
     prevSlide() {
         this.index = (this.index - 1 + this.sliderItems.length) % this.sliderItems.length;
+        console.log("index",this.index)
         this.updateSliderPosition();
     }
 
+
     updateSliderPosition() {
-        const offset = -(this.index * this.width);
-        this.slider.style.transform = `translateX(${offset}px)`;
+        const offset = (this.index * this.width);
+        console.log(this.width, offset);
+        this.slider.style.transform = `translateX(-${offset}px)`;
+        if(offset === ((this.componentWidth * this.sliderItems.length) - 500)){
+            this.index = 0;
+        }
         this.slider.style.transition = 'transform 0.5s ease';
     }
 }
