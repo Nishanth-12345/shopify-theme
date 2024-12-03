@@ -15,7 +15,7 @@ a{
 }
 
 h3{
-    color: #000;
+    color: #c8c8c8;
 }
 
 .card-image{
@@ -28,4 +28,8 @@ h3{
     height: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+.card-content{
+    padding: 10px;
 }

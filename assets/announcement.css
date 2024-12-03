@@ -5,7 +5,7 @@
     padding:0 30px;
     margin: 0 auto;
     height: 50px;
-    background-color: black;
+    background-color: #fff6f0;
 }
 
 .announcement-bar p {
@@ -17,10 +17,10 @@
 }
 .socio-media-icons{
     display: flex;
-        align-items: center;
-        position: relative;
-        justify-content: center;
-    }
+    align-items: center;
+     position: relative;
+     justify-content: center;
+}
 
 
 .socio-media{
