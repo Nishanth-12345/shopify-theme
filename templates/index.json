@@ -37,6 +37,10 @@
       "type": "featured-collection",
       "settings": {}
     },
+    "offer-slide": {
+      "type": "offer-slider",
+      "settings": {}
+    },
     "counter": {
       "type": "counter",
       "settings": {}
@@ -44,6 +48,7 @@
   },
   "order": [
     "image_banner",
+    "offer-slide",
     "featured_collection",
     "rich-text",
     "counter"

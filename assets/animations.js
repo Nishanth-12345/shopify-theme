@@ -113,3 +113,5 @@ class SliderComponent extends HTMLElement {
 }
 
 customElements.define('slider-component', SliderComponent);
+
+

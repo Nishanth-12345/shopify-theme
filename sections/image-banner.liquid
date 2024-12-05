@@ -1,10 +1,6 @@
 {{ 'image-banner.css' | asset_url | stylesheet_tag }}
 
-{% style %}
-  .banner::after{
-    opacity: {{ section.settings.overlay | divided_by: 100.0 }}
-  }
-{% endstyle %}
+
 
 {% liquid
   assign fullwidth = '100vw'
@@ -24,7 +20,7 @@
 <section>
   <div
     id="Banner-{{ section.id }}"
-    class="banner banner-align-{{ section.settings.content-position }}"
+    class="banner banner-align-{{ section.settings.content-position }} {% if section.settings.rte == true %} rte {% endif %}"
   >
     {% if section.settings.image1 != blank %}
       <div
@@ -126,6 +122,15 @@
     </div>
   </div>
 </section>
+{% style %}
+  .banner::after{
+    opacity: {{ section.settings.overlay | divided_by: 100.0 }}
+  }
+  .banner-content{
+    background-color: {{ section.settings.bg-color }}
+  }
+{% endstyle %}
+
 
 {% schema %}
 {
@@ -140,6 +145,17 @@
       "type": "image_picker",
       "id": "image2",
       "label": "select image 2"
+    },
+    {
+       "type": "checkbox",
+       "id":"rte",
+       "default":false,
+       "label": "left banner"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Bg color"
     },
     {
       "type": "range",

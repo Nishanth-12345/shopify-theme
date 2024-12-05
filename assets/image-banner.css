@@ -9,6 +9,12 @@
 }
 
 
+.banner.rte .banner-image{
+    order: 2;
+}
+.banner.rte .banner-content{
+    order: 1;
+}
 
 .banner::after {
     content: "";
@@ -81,7 +87,7 @@ h2{
     align-items: center;
     justify-content: flex-start;
     z-index: 2;
-    background-color: #fffaf7;
+    
 }
 
 .banner-box{
