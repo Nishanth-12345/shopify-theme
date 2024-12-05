@@ -3,6 +3,7 @@
 <section>
   <header class="header-container
     header--{{ section.settings.logo_position }}
+    {{ section.settings.behaviour }}
     ">
 
     {% if section.settings.logo_position != 'middle-center' %}
@@ -41,8 +42,6 @@
     {% if section.settings.logo_position == 'middle-center' %}
       <h1>
         <a href="/">
-  
-  
           {% if settings.logo != blank %}
             <div class="logo">
               {%- assign logo_height = 50 | divided_by: 1 -%}
@@ -95,6 +94,19 @@
   </header>
 </section>
 
+<style>
+  .header-container{
+    background-color: {{ section.settings.bg-color }}
+  }
+
+ .title{
+      color: {{ section.settings.text-color }}
+  }
+  .menu-links ul li{
+    color: {{ section.settings.text-color }}
+  }
+</style>
+
 {% schema %}
 {
   "name": "header",
@@ -125,12 +137,37 @@
       "info": "content"
     },
     {
+       "type":"color",
+       "id":"bg-color",
+       "label": "Bg color"
+    },
+    {
+      "type":"color",
+      "id":"text-color",
+      "label": "Text color"
+   },
+    {
       "type": "link_list",
       "id": "menu",
       "default": "main-menu",
       "label": "main menu"
     },
-  
+   {
+     "type": "select",
+     "id":"behaviour",
+     "options": [
+      {
+        "label": "none",
+        "value": "none"
+      },
+      {
+        "label": "fixed",
+        "value": "fixed"
+      }
+     ],
+     "label": "behaviour",
+     "default":"none"
+   }
   ],
   "presets": []
 }

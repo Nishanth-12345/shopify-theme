@@ -5,8 +5,9 @@
     {{ 'base.css' | asset_url | stylesheet_tag}}
   </head>
   <body>
+    <div class="header-section">
      {% sections 'header-group' %}
-     
+    </div>
     {{ content_for_layout }}
     {% section 'footer' %}
     <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>

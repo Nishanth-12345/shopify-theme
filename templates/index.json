@@ -44,6 +44,10 @@
     "counter": {
       "type": "counter",
       "settings": {}
+    },
+    "image-comparison": {
+      "type": "image-comparison",
+      "settings": {}
     }
   },
   "order": [
@@ -51,6 +55,7 @@
     "offer-slide",
     "featured_collection",
     "rich-text",
-    "counter"
+    "counter",
+    "image-comparison"
   ]
 }

@@ -11,6 +11,14 @@ svg{
    align-items: center;
    padding: 8px 50px;
    border-bottom: 1px solid #989898;
+   
+}
+
+.header-container.fixed{
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .header--top-left{
