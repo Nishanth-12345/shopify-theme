@@ -1,8 +1,8 @@
 <section>
-   <div class="image-container">
+  <div class="image-container">
     <h2>Comparison between these images</h2>
     <p>Comparison between these images</p>
-   </div>
+  </div>
   <image-comparison>
     <div class="image-comparison-slider-container">
       <div class="image-wrapper">
@@ -11,8 +11,7 @@
             {{
               section.settings.image1
               | image_url: width: 300
-              | image_tag: width: section.settings.image1.width, height: section.settings.image1.width
-              | divided_by: section.settings.image1.aspect_ratio
+      
             }}
             <div class="description">
               <p>chair make your home decorat</p>
@@ -34,10 +33,10 @@
               | image_tag: width: section.settings.image1.width, height: section.settings.image1.width
               | divided_by: section.settings.image1.aspect_ratio
             }}
-                
-        <div class="description right">
-          <p>chair make your home decorat</p>
-        </div>
+
+            <div class="description right">
+              <p>chair make your home decorat</p>
+            </div>
           </div>
         {% else %}
           <div class="image sec">
@@ -47,11 +46,10 @@
             </div>
           </div>
         {% endif %}
-        
+
         <div class="dragger">{{ 'double-arrow.svg' | inline_asset_content }}</div>
         <div class="before">before</div>
         <div class="after">after</div>
-  
       </div>
     </div>
   </image-comparison>
@@ -62,9 +60,43 @@
   "name": "image comparison",
   "settings": [
     {
+      "type": "text",
+      "id": "heading",
+      "label": "heading",
+      "default": "Products comparison"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "description",
+      "default": "Products description"
+    },
+    {
       "type": "image_picker",
       "id": "image1",
-      "label": "image 1"
+      "label": "select image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "select image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "image 2"
+    },
+    {
+      "type": "text",
+      "id": "image_title_1",
+      "label": "first image title",
+      "default": "image title"
+    },
+    {
+      "type": "text",
+      "id": "image_title_2",
+      "label": "second image title",
+      "default": "image title"
     }
   ]
 }
