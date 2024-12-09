@@ -61,8 +61,8 @@
           {% if section.settings.image2 != blank %}
             image-half
           {% endif %}
-          {% if section.settings.img_behaviour != 'none' %}
-           animate-{{ section.settings.img_behaviour }}
+          {% if section.settings.image-behavior != 'none' %}
+           animate--{{ section.settings.image-behavior }}
           {% endif %}
         "
       >
@@ -123,6 +123,22 @@
       "id": "bg-color",
       "label": "Bg color",
       "default": "#aec79d"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Bg color"
+    },
+    {
+       "type": "checkbox",
+       "id":"rte",
+       "default":false,
+       "label": "left banner"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Bg color"
     },
     {
       "type": "range",
