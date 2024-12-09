@@ -1,55 +1,60 @@
 <section>
   <div class="image-container">
-    <h2>Comparison between these images</h2>
-    <p>Comparison between these images</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{section.settings.description }}</p>
   </div>
   <image-comparison>
     <div class="image-comparison-slider-container">
       <div class="image-wrapper">
         {% if section.settings.image1 != blank %}
+          {% liquid
+            assign image_height = section.settings.image1.width | divided_by: section.settings.image1.aspect_ratio
+         %}
           <div class="image">
             {{
               section.settings.image1
-              | image_url: width: 300
-      
+              | image_url: width: 3070
+              | image_tag: width: section.settings.image1.width, image_height: image_height
             }}
             <div class="description">
-              <p>chair make your home decorat</p>
+              <p>{{ section.settings.image_title_1 }}</p>
             </div>
           </div>
         {% else %}
           <div class="image">
             <img src="{{ 'chair-2.jpg' | asset_url }}" width="300" height="300" alt="Armchair">
             <div class="description">
-              <p>chair make your home decorat</p>
+              <p>{{ section.settings.image_title_1 }}</p>
             </div>
           </div>
         {% endif %}
         {% if section.settings.image2 != blank %}
+      
           <div class="image sec">
+            {% liquid
+              assign imageheight = section.settings.image2.width | divided_by: section.settings.image2.aspect_ratio
+           %}
             {{
               section.settings.image2
-              | image_url: width: 300
-              | image_tag: width: section.settings.image1.width, height: section.settings.image1.width
-              | divided_by: section.settings.image1.aspect_ratio
+              | image_url: width: 3070
+              | image_tag: width: section.settings.image2.width, image_height: imageheight
             }}
-
             <div class="description right">
-              <p>chair make your home decorat</p>
+              <p>{{ section.settings.image_title_2 }}</p>
             </div>
           </div>
         {% else %}
           <div class="image sec">
             <img src="{{ 'chair-4.jpg' | asset_url }}" width="300" height="300" alt="Armchair">
             <div class="description right">
-              <p>chair make your home decorat</p>
+              <p>{{ section.settings.image_title_2 }}</p>
             </div>
           </div>
         {% endif %}
 
         <div class="dragger">{{ 'double-arrow.svg' | inline_asset_content }}</div>
-        <div class="before">before</div>
-        <div class="after">after</div>
+        <div class="before">Before</div>
+        <div class="after">After</div>
       </div>
     </div>
   </image-comparison>
@@ -80,11 +85,6 @@
       "type": "image_picker",
       "id": "image2",
       "label": "select image 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "image2",
-      "label": "image 2"
     },
     {
       "type": "text",

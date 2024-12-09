@@ -126,7 +126,8 @@ body {}
     position: relative;
     padding: 18px 46px;
     overflow: hidden;
-
+    max-width: 1200px;
+    margin: auto;
     
 }
 .image-comparison-slider-container .image-wrapper{
@@ -135,17 +136,18 @@ body {}
     display: grid;
     height: 100%;
     overflow: hidden;
-    max-height: 500px;
+    max-height: 700px;
 }
 
 .image-wrapper .image{
     grid-area: 1 / -1;
+    max-height: inherit;
 }
 
 .image-wrapper .image img{
     color: var(--dark-bg);
     max-width: 100%;
-    height: auto;
+    height: 100%;
     width: 100%;
 }
 
@@ -161,7 +163,7 @@ body {}
     max-width: 100%;
 }
 .image-wrapper .image.sec {
-    clip-path: inset(0 0 0 0); /* Initial state */
+    clip-path: inset(0 0 0 0); 
 }
 .left{
     --left:10px;
@@ -173,7 +175,7 @@ body {}
     top: 0;
     left: 0px;
     inset-inline-start: var(--left);
-    width: 16px;
+    width: 6px;
     height: 100%;
     background-color:var(--bg-light);
     cursor: move;

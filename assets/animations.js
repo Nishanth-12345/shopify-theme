@@ -100,6 +100,7 @@ class ImageComparison extends HTMLElement {
         this.isDragging = false;
         this.startX = 0;
         this.initSlider();
+        this.imageSec.style.clipPath = `inset(0 0 0 ${this.sliderContainer.getBoundingClientRect().width / 2}px)`;
         this.dragger.style.left = `${this.sliderContainer.getBoundingClientRect().width / 2}px`;
     }
 
