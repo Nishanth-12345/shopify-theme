@@ -1,0 +1,90 @@
+.counter-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+    padding: 20px;
+    width:auto;
+    height: 100%;
+    position: relative;
+    max-height: 200px;
+}
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.overlay img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    object-fit: cover;
+    left: 0;
+
+}
+
+.overlay .opacity{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #000000bd;
+}
+.promotion{
+    text-align: center;
+}
+
+.promotion h2{
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--bg-light);
+}
+
+.promotion p{
+    font-size: 20px;
+    margin-top: 4px;
+    font-weight: 400;
+    color: var(--bg-light);
+}
+
+.counter{
+   display: flex;
+   align-items: baseline;
+   gap: 10px;
+   min-width: 310px;
+}
+
+.counter .hh-mm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    gap: 6px;
+}
+
+
+.counter .hh-mm:not(:last-child){
+    border-right: 1px solid var(--bg-light);
+}
+
+.counter .hh-mm :first-child{
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--bg-light);
+}
+
+.counter .hh-mm :last-child{
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--bg-light);
+    text-transform: uppercase;
+}

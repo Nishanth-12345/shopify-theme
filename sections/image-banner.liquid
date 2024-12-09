@@ -1,18 +1,14 @@
 {{ 'image-banner.css' | asset_url | stylesheet_tag }}
 
-{% style %}
-  #banner--{{ section.id }}::after{
-    opacity: {{ section.settings.overlay | divided_by: 100 }}
-  }
-{% endstyle %}
+
 
 {% liquid
   assign fullwidth = '100vw'
-  if section.settings['image-behaviour'] == 'ambient'
+  if section.settings.img_behaviour == 'ambient'
     assign halfwidth = '60vw'
     assign fullwidth = '120vw'
 
-  elsif section.settings['image-behaviour'] == 'fixed' or section.settings['image-behaviour'] == 'zoom'
+  elsif section.settings.img_behaviour == 'fixed' or section.settings.img_behaviour == 'zoom'
     assign halfwidth = '100vw'
     assign fullwidth = '100vw'
 
@@ -23,8 +19,8 @@
 
 <section>
   <div
-    id="banner-{{ section.id }}"
-    class="banner banner-align-{{ section.settings }}"
+    id="Banner-{{ section.id }}"
+    class="banner banner-align-{{ section.settings.content-position }} {% if section.settings.rte == true %} rte {% endif %}"
   >
     {% if section.settings.image1 != blank %}
       <div
@@ -36,15 +32,15 @@
           {% if section.settings.image2 != blank %}
              image-half
           {% endif %}
-           {% if section.settings.image-behaviour != 'none' %}
-            animate--{{ section.settings.image-behaviour }}
+           {% if section.settings.img_behaviour != 'none' %}
+            animate-{{ section.settings.img_behaviour }}
            {% endif %}
         "
       >
         {% liquid
           assign image_height = section.settings.image1.width | divided_by: section.settings.image1.aspect_ratio
           if section.settings.image2 != blank
-            assign image_class = 'image_half'
+            assign image_class = 'image-half'
           endif
           if section.settings.image2 != blank
             assign sizes = halfwidth
@@ -65,16 +61,47 @@
           {% if section.settings.image2 != blank %}
             image-half
           {% endif %}
-          {% if section.settings.image-behavior != 'none' %}
-           animate--{{ section.settings.image-behavior }}
+          {% if section.settings.img_behaviour != 'none' %}
+           animate-{{ section.settings.img_behaviour }}
           {% endif %}
         "
       >
-        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        <img src="{{ 'chair-2.jpg' | asset_url }}" width="300" height="300" alt="Armchair" />
+
+        
       </div>
     {% endif %}
+
+    <div class="banner-content">
+      <div class="banner-box">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'heading' %}
+              <h2 class="heading inline-richtext">
+                {{ block.settings.heading }}
+              </h2>
+            {% when 'text' %}
+              <p class="text">
+                {{ block.settings.text }}
+              </p>
+          {% endcase %}
+        {% endfor %}
+        <div class="button">
+          <a class="button-link">Shop Now</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+{% style %}
+  .banner::after{
+    opacity: {{ section.settings.overlay | divided_by: 100.0 }}
+  }
+  .banner-content{
+    background-color: {{ section.settings.bg-color }}
+  }
+{% endstyle %}
+
 
 {% schema %}
 {
@@ -86,9 +113,16 @@
       "label": "select image 1"
     },
     {
-      "type": "image_picker",
-      "id": "image2",
-      "label": "select image 2"
+       "type": "checkbox",
+       "id":"rte",
+       "default":false,
+       "label": "left banner"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Bg color",
+      "default": "#aec79d"
     },
     {
       "type": "range",
@@ -128,8 +162,12 @@
     },
     {
       "type": "select",
-      "id": "image-behaviour",
+      "id": "img_behaviour",
       "options": [
+        {
+          "value": "none",
+          "label": "none"
+        },
         {
           "value": "ambient",
           "label": "ambient"
@@ -137,7 +175,11 @@
         {
           "value": "fixed",
           "label": "fixed"
-        }
+        },
+        {
+          "value": "zoom-in",
+          "label": "zoom-in"
+        },
       ],
       "default": "none",
       "label": "select image behavior"
@@ -152,14 +194,20 @@
         {
           "type": "inline_richtext",
           "id": "heading",
-          "default": "banner full",
+          "default": "Make your home a place",
           "label": "heading"
-        },
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "title",
+      "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "default": "banner title",
-          "label": "title"
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "banner",
+          "label": "text"
         }
       ]
     }

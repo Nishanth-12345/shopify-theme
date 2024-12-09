@@ -10,7 +10,15 @@ svg{
    column-gap: 14px;
    align-items: center;
    padding: 8px 50px;
-   border-bottom: 1px solid #989898;
+   border-bottom: 1px solid var(--grey-color);
+   
+}
+
+.header-container.fixed{
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .header--top-left{
@@ -39,10 +47,11 @@ svg{
 
 a{
     text-decoration: none;
+    color:var(--text-dark);
 }
 
 h1 .title{
-    color: #000;
+    color:var(--text-dark);
 }
 
 h2 .logo{
@@ -55,7 +64,9 @@ h2 .logo img{
     width: 100%;
     height: 100%;
 }
-
+h3{
+    color: var(--text-dark);
+}
 .menu-links{
     position: relative;
     display: block;
@@ -73,7 +84,7 @@ h2 .logo img{
     margin: 0;
     padding: 0;
     list-style: none;
-    color: #333;
+    color: var(--text-gray);
 }
 
 .right-content{
@@ -85,7 +96,7 @@ h2 .logo img{
 
 
 .right-content span svg{
-    stroke: #000;
+    stroke:var(--text-dark);
     stroke-width: 0.5;
 }
 
@@ -108,11 +119,11 @@ h2 .logo img{
    height: 14px;
    justify-content: center;
    border-radius: 50%;
-   background-color: #fff;
-   border: 1px solid #333;
+   background-color: var(--bg-light);
+   border: 1px solid var(--grey-color);
 }
 
 .cart-item-count span{
-    color: #333;
+    color: var(--grey-color);
     font-size: 12px;
 }

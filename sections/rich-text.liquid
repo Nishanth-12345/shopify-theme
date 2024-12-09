@@ -1,0 +1,136 @@
+{{ 'rich-text.css' | asset_url | stylesheet_tag }}
+<style>
+  .rich-text-container{
+    background: url('{{ "chair-banner.jpeg" | asset_url }}') no-repeat center center;
+    background-size: cover;
+    width: auto;
+    height: 200px;
+    position: relative;
+  }
+
+
+</style>
+<section>
+  <div class="rich-text-container">
+      <div class="rich-text-wrapper 
+          align-{{ section.settings.content_align  }}
+        ">
+         {% for block in section.blocks %}
+             {% case block.type %}
+                {% when 'heading'%}
+                  <h2 class="rich-heading inline-richtext {{ block.settings.font-size }}"
+                   {{ block.shopify_attributes }}
+                  >
+                     {{ block.settings.heading }}
+                  </h2>
+                {% when 'text' %}
+                  <div class="rich-text">
+                      <p {{ section.settings.text-font-size }}>{{ block.settings.title }}</p>
+                  </div>
+              {% endcase %}
+          {% endfor %}
+          <button class="rich-button">Shop Now</button>
+      </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "rich-text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "center",
+      "label": "content alignment"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "heading",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "product features",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "font-size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "h2"
+            },
+            {
+              "value": "h0",
+              "label": "h0"
+            }
+          ],
+          "label": "font size",
+          "default": "h2"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "text title"
+        },
+        {
+          "type": "select",
+          "id": "text-font-size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "h2"
+            },
+            {
+              "value": "h0",
+              "label": "h0"
+            }
+          ],
+          "label": "text font size",
+          "default": "h2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "rich-text",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

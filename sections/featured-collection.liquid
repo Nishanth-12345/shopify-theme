@@ -1,0 +1,177 @@
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+{{ 'product-card.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="collection-wrapper"
+  id="collection-{{ section.id }}"
+  data-id="{{ section.id }}"
+>
+  <div class="title-container">
+    <h2 class="{{ section.settings.font-size }}">{{ section.settings.title }}</h2>
+  </div>
+  
+  <slider-component class="featured-products-container">
+  <div class="categories">
+    {% for block in section.blocks %}
+      {% if block.type == 'collection' %}
+        <span data-collection-title="{{ block.settings.collection.handle }}">{{ block.settings.collection.title }}</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+    <ul
+      class="
+            {%if section.settings.enable-slider %} slider {% else %} grid product-grid {% endif %}
+        grid-{{ section.settings.columns }}-col
+      "
+    >
+      {% for block in section.blocks %}
+         {% if block.type == 'collection' %}
+            {% assign collection = block.settings.collection %} 
+            {% for product in collection.products %}
+              <li class="grid-item" data-category="{{ collection.handle }}">
+                {% render 'card-product',
+                  products: product,
+                  aspect-ratio: section.settings['card-img-ratio'],
+                  quick-add: section.settings['quick-add']
+                  
+                %}
+              </li>
+              {% endfor %}
+          {% endif %}
+      {% endfor %}
+ 
+    </ul>
+    <div class="nav-buttons">
+      <button class="next-button">
+       {{ 'arrow-right.svg' | inline_asset_content }}
+      </button>
+      <button class="prev-button">
+        {{ 'arrow-right.svg' | inline_asset_content }}
+      </button>
+    </div>
+  </slider-component>
+</div>
+
+<script>
+
+</script>
+{% schema %}
+{
+  "name": "featured-products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "featured products",
+      "label": "heading"
+    },
+    {
+      "type": "select",
+      "id": "font-size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "h2"
+        },
+        {
+          "value": "h0",
+          "label": "h0"
+        }
+      ],
+      "label": "select font size"
+    },
+
+    {
+      "type": "range",
+      "id": "no_of_products",
+      "min": 2,
+      "max": 25,
+      "step": 1,
+      "default": 10,
+      "label": "no of products"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "no of columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-slider",
+      "label": "slider",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "card-img-ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "adapt"
+        },
+        {
+          "value": "potrait",
+          "label": "potrait"
+        }
+      ],
+      "default": "adapt",
+      "label": "card image ratio"
+    },
+    {
+      "type": "select",
+      "id": "quick-add",
+      "options": [
+        {
+          "value": "none",
+          "label": "none"
+        },
+        {
+          "value": "standard",
+          "label": "standard"
+        },
+        {
+          "value": "bulk",
+          "label": "bulk"
+        }
+      ],
+      "default": "none",
+      "label": "quick add products"
+    },
+    {
+      "type": "range",
+      "id": "padding-y",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "padding-bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "featured-collections"
+    }
+  ]
+}
+{% endschema %}

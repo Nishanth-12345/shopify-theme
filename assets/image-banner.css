@@ -1,17 +1,164 @@
 .banner{
     display: flex;
     position: relative;
+    flex-direction: row;
     z-index: auto;
-    min-height: 380px;
+    height: 100%;
+    width: 100%;
+    max-height: 660px;
 }
 
-.banner:after, .banner__media:after {
+
+.banner.rte .banner-image{
+    order: 2;
+}
+.banner.rte .banner-content{
+    order: 1;
+}
+
+.banner::after {
     content: "";
     position: absolute;
     top: 0;
-    background: #000;
+    background: var(--dark-bg);
     opacity: 0;
     z-index: 1;
     width: 100%;
     height: 100%;
+}
+.banner-image svg{
+   height: 100%;
+   width: 100%;
+}
+
+.banner-image img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: opacity .4s cubic-bezier(.25,.46,.45,.94);
+}
+
+
+.banner-align-top .banner-content{
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.banner-align-middle .banner-content{
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.banner-align-middle .banner-box{
+    align-items: flex-start;
+}
+
+.banner-align-bottom .banner-content{
+    align-items: flex-end;
+    justify-content: center;
+}
+
+h2{
+    font-size: 38px;
+}
+
+.banner-image{
+    height: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 65%;
+}
+
+.image-half{
+    width: 50%;
+}
+
+.image-half + .image-half{
+    right: 0;
+    left: auto;
+}
+
+.banner-content{
+    padding: 0;
+    display: flex;
+    position: relative;
+    width: 45%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 2;
+    background-color: var(--primary-color);
+}
+
+.banner-box{
+    padding: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    word-wrap: break-word;
+    z-index: 1;
+}
+
+.banner-content .heading{
+     font-weight: 500;
+}
+
+.banner-content .text{
+    font-size: 18px;
+}
+
+.banner-content .button{
+     display: flex;
+     align-items: center;
+     border: 1px solid  var(--secondary-color);
+     background-color: var(--secondary-color);
+     justify-content: center;
+     border-radius: 4px;
+     padding: 8px 12px;
+     min-width: 102px;
+     margin-top: 10px;
+}
+
+.banner-content .button-link{
+    text-decoration: none;
+    color: var(--bg-light);
+}
+
+
+.banner-image.animate-zoom-in{
+    clip-path: inset(0px);
+}
+
+.banner-image.fixed{
+    clip-path: inset(0px);
+}
+
+.banner-image.animate-fixed > img,
+.banner-image.animate-zoom-in > img{
+  position: fixed;
+  height: 100vh;
+}
+
+.image-half.animate-fixed:first-child > img,
+.image-half.animate-zoom-in:first-child > img{
+    width: 50%;
+}
+
+.image-half.animate-fixed:nth-child(2) > img,
+.image-half.animate-zoom-in:nth-child(2)> img{
+    left: 50%;
+    width: 50%;
+}
+
+.animate-zoom-in {
+    --zoom-in-ratio: 1;
+}
+
+.animate-zoom-in > img{
+    scale: var(--zoom-in-ratio);
+    transition:  scale 100ms linear;
 }

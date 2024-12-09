@@ -1,0 +1,44 @@
+<section>
+  <div class="offer-wrapper">
+    <div class="offer-slider"> 
+    <div class="offer-slide-container {% if section.settings.mode == true %} rte {% endif %}">
+      <div class="offer-title">
+        <h3>{{ section.settings['offer-title'] }}</h3>
+      </div>
+      <div class="offer-title">
+        <h3>{{ section.settings['offer-title'] }}</h3>
+      </div>
+      <div class="offer-title">
+        <h3>{{ section.settings['offer-title'] }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<style></style>
+
+{% schema %}
+{
+  "name": "offer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "offer-title",
+      "label": "offer title",
+      "default": "Limited offer sale 50%"
+    },
+    {
+       "type": "checkbox",
+       "id":"mode",
+       "label": "select right mode",
+       "default":false
+    }
+  ],
+  "presets": [
+    {
+      "name": "offer"
+    }
+  ]
+}
+{% endschema %}

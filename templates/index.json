@@ -1,7 +1,7 @@
 
 {
   "sections":{
-    "image-banner":{
+    "image_banner":{
       "type":"image-banner",
       "blocks":{
         "heading":{
@@ -21,10 +21,34 @@
       "block-order":[
         "heading",
         "text"
-      ]
+      ],
+      "settings":{
+        "overlay":0
+      }
+    },
+    "rich-text":{
+      "type":"rich-text",
+
+    },
+    "featured_collection":{
+      "type":"featured-collection",
+    },
+    "offer-slide":{
+      "type":"offer-slider"
+    },
+    "counter":{
+      "type":"counter"
+    },
+    "image-comparison":{
+      "type":"image-comparison"
     }
   },
   "order":[
-      "image-banner"
+      "image_banner",
+      "offer-slide",
+      "featured_collection",
+      "rich-text",
+      "counter",
+     "image-comparison"
    ] 
 }
