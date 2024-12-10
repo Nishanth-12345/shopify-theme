@@ -1,7 +1,10 @@
 <section>
   <div class="offer-wrapper">
     <div class="offer-slider"> 
-    <div class="offer-slide-container {% if section.settings.mode == true %} rte {% endif %}">
+    <div class="offer-slide-container 
+      {% if section.settings.mode == true %} rte {% endif %}"
+
+    >
       <div class="offer-title">
         <h3>{{ section.settings['offer-title'] }}</h3>
       </div>
@@ -16,7 +19,15 @@
 </div>
 </section>
 
-<style></style>
+<style>
+  .offer-title h3{
+     color: {{ section.settings.text-color }}
+  }
+
+  .offer-slide-container{
+    background: {{ section.settings.bg-color }}
+  }
+</style>
 
 {% schema %}
 {
@@ -33,7 +44,17 @@
        "id":"mode",
        "label": "select right mode",
        "default":false
-    }
+    },
+    {
+      "type": "color",
+      "id":"bg-color",
+      "label": "select background"
+    },
+    {
+      "type": "color",
+      "id":"text-color",
+      "label": "select text color"
+    },
   ],
   "presets": [
     {
